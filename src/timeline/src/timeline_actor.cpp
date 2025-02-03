@@ -1391,7 +1391,7 @@ caf::message_handler TimelineActor::message_handler() {
         [=](item_atom, event_atom, const std::set<utility::Uuid> &events) -> bool {
             auto result = true;
             for (const auto &i : events) {
-                if (not events_processed_.contains(i)) {
+                if (events_processed_.find(i) == events_processed_.end()) {
                     result = false;
                     break;
                 }
