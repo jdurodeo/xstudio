@@ -347,7 +347,7 @@ ViewportLayoutManager::ViewportLayoutManager(caf::actor_config &cfg)
             const playhead::AssemblyMode mode,
             const playhead::AutoAlignMode default_align_mode) -> result<bool> {
             // Here a layout actor is registering a layout with us
-            if (viewport_layouts_.contains(layout_name)) {
+            if (viewport_layouts_.find(layout_name) != viewport_layouts_.end()) {
                 return make_error(
                     xstudio_error::error,
                     fmt::format(
@@ -361,7 +361,7 @@ ViewportLayoutManager::ViewportLayoutManager(caf::actor_config &cfg)
             const std::string &layout_name,
             const bool /*shared_instance*/,
             const std::string /*viewport_name*/) -> result<caf::actor> {
-            if (not viewport_layouts_.contains(layout_name)) {
+            if (not viewport_layouts_.find(layout_name) != viewport_layouts_.end()) {
                 return make_error(
                     xstudio_error::error,
                     fmt::format(
@@ -373,7 +373,7 @@ ViewportLayoutManager::ViewportLayoutManager(caf::actor_config &cfg)
         [=](playhead::compare_mode_atom, const std::string &layout_name)
             -> result<
                 std::pair<xstudio::playhead::AutoAlignMode, xstudio::playhead::AssemblyMode>> {
-            if (not viewport_layouts_.contains(layout_name)) {
+            if (not viewport_layouts_.find(layout_name) != viewport_layouts_.end()) {
                 return make_error(
                     xstudio_error::error,
                     fmt::format(
