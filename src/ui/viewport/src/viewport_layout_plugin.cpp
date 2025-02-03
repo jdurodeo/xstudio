@@ -373,7 +373,7 @@ ViewportLayoutManager::ViewportLayoutManager(caf::actor_config &cfg)
         [=](playhead::compare_mode_atom, const std::string &layout_name)
             -> result<
                 std::pair<xstudio::playhead::AutoAlignMode, xstudio::playhead::AssemblyMode>> {
-            if (not viewport_layouts_.find(layout_name) != viewport_layouts_.end()) {
+            if (viewport_layouts_.find(layout_name) == viewport_layouts_.end()) {
                 return make_error(
                     xstudio_error::error,
                     fmt::format(
