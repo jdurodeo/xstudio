@@ -361,7 +361,7 @@ ViewportLayoutManager::ViewportLayoutManager(caf::actor_config &cfg)
             const std::string &layout_name,
             const bool /*shared_instance*/,
             const std::string /*viewport_name*/) -> result<caf::actor> {
-            if (not viewport_layouts_.find(layout_name) != viewport_layouts_.end()) {
+            if (viewport_layouts_.find(layout_name) == viewport_layouts_.end()) {
                 return make_error(
                     xstudio_error::error,
                     fmt::format(
