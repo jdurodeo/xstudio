@@ -89,7 +89,7 @@ OpenGLViewportRenderer::OpenGLViewportRenderer(const std::string &window_id)
     // Instances of OpenGLViewportRenderer that are in the same xstudio
     // window need to share texture resources as they display exactly the
     // same image.
-    if (s_resources_store_.contains(window_id)) {
+    if (s_resources_store_.find(window_id) != s_resources_store_.end()) {
         resources_ = s_resources_store_[window_id];
     } else {
         s_resources_store_[window_id].reset(new SharedResources);
